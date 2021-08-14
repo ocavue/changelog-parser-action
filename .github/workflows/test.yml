@@ -1,5 +1,5 @@
 name: "build-test"
-on: ['push']
+on: ["push"]
 
 jobs:
   build: # make sure build/ci work properly
@@ -19,13 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - id: changelog-parser
+        uses: ./
+      - run: |
+          echo "The latest version is $CHANGELOG_VERSION"
+          echo "The changelog body in the latest version is $CHANGELOG_BODY"
+        env:
+          CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
+          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
 
   test_remove_markdown_true:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - id: changelog-parser
+        uses: ./
         with:
           removeMarkdown: true
 
@@ -33,7 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - id: changelog-parser
+        uses: ./
         with:
           removeMarkdown: false
 
@@ -41,6 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - id: changelog-parser
+        uses: ./
         with:
           filePath: "./CHANGELOG.md"
