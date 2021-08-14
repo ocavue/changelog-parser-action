@@ -38,6 +38,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const core = __importStar(__nccwpck_require__(984));
 const changelog_parser_1 = __importDefault(__nccwpck_require__(995));
 const path_1 = __importDefault(__nccwpck_require__(622));
@@ -64,6 +65,16 @@ function getInput() {
         removeMarkdown: parseBoolean(removeMarkdown, true)
     };
 }
+function getLatestVersionBody(parsed, removeMarkdown) {
+    const version = parsed.versions[0];
+    if (removeMarkdown) {
+        const lines = version['parsed']['_'];
+        return lines.join('\n');
+    }
+    else {
+        return version.body;
+    }
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -71,9 +82,12 @@ function run() {
             debug(`reading changelog file from ${filePath}`);
             debug(`removeMarkdown is ${removeMarkdown}`);
             const parsed = yield changelog_parser_1.default({ filePath, removeMarkdown });
-            const json = JSON.stringify(parsed);
-            debug(`parsed is ${json}`);
-            core.setOutput('parsed', json);
+            const parsedJson = JSON.stringify(parsed);
+            debug(`parsed is ${parsedJson}`);
+            core.setOutput('parsed', parsedJson);
+            const latestBody = getLatestVersionBody(parsed, removeMarkdown);
+            debug(`latestBody is ${latestBody}`);
+            core.setOutput('latestBody', latestBody);
         }
         catch (error) {
             core.setFailed(error.message);

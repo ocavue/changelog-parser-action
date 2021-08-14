@@ -13,7 +13,8 @@ inputs:
 outputs:
   parsed:
     description: 'A JSON string representing the parsed changelog object. Check https://github.com/hypermodules/changelog-parser/tree/v2.8.0#standards for more information about the object structure.'
-
+  latestBody:
+    description: 'A string that contains the changelog from the latest version'
 runs:
   using: 'node12'
   main: 'dist/index.js'

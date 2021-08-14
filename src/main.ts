@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as core from '@actions/core'
 import parseChangelog from 'changelog-parser'
 import path from 'path'
@@ -28,6 +29,16 @@ function getInput(): {filePath: string; removeMarkdown: boolean} {
   }
 }
 
+function getLatestVersionBody(parsed: any, removeMarkdown: boolean): string {
+  const version = parsed.versions[0]
+  if (removeMarkdown) {
+    const lines: string[] = version['parsed']['_']
+    return lines.join('\n')
+  } else {
+    return version.body
+  }
+}
+
 async function run(): Promise<void> {
   try {
     const {filePath, removeMarkdown} = getInput()
@@ -36,10 +47,13 @@ async function run(): Promise<void> {
     debug(`removeMarkdown is ${removeMarkdown}`)
 
     const parsed = await parseChangelog({filePath, removeMarkdown})
-    const json = JSON.stringify(parsed)
-    debug(`parsed is ${json}`)
+    const parsedJson = JSON.stringify(parsed)
+    debug(`parsed is ${parsedJson}`)
+    core.setOutput('parsed', parsedJson)
 
-    core.setOutput('parsed', json)
+    const latestBody = getLatestVersionBody(parsed, removeMarkdown)
+    debug(`latestBody is ${latestBody}`)
+    core.setOutput('latestBody', latestBody)
   } catch (error) {
     core.setFailed(error.message)
   }
