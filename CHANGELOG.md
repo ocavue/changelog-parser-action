@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/ocavue/changelog-parser-action/compare/v1.0.3...v1.1.0) (2021-08-14)
+
+
+### Features
+
+* add `latestBody` ([b84fb4f](https://www.github.com/ocavue/changelog-parser-action/commit/b84fb4fecea81e3a985812d3cb9f81053ecf5784))
+
 ### [1.0.3](https://www.github.com/ocavue/changelog-parser-action/compare/v1.0.2...v1.0.3) (2021-08-14)
 
 
