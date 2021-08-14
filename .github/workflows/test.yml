@@ -22,9 +22,14 @@ jobs:
       - id: changelog-parser
         uses: ./
       - run: |
+          echo "Parsed changelog is:"
+          echo "$CHANGELOG" | jq
+          echo "========================================"
           echo "The latest version is $CHANGELOG_VERSION"
+          echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
         env:
+          CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
@@ -37,9 +42,14 @@ jobs:
         with:
           removeMarkdown: true
       - run: |
+          echo "Parsed changelog is:"
+          echo "$CHANGELOG" | jq
+          echo "========================================"
           echo "The latest version is $CHANGELOG_VERSION"
+          echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
         env:
+          CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
@@ -52,9 +62,14 @@ jobs:
         with:
           removeMarkdown: false
       - run: |
+          echo "Parsed changelog is:"
+          echo "$CHANGELOG" | jq
+          echo "========================================"
           echo "The latest version is $CHANGELOG_VERSION"
+          echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
         env:
+          CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
@@ -67,8 +82,13 @@ jobs:
         with:
           filePath: "./CHANGELOG.md"
       - run: |
+          echo "Parsed changelog is:"
+          echo "$CHANGELOG" | jq
+          echo "========================================"
           echo "The latest version is $CHANGELOG_VERSION"
+          echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
         env:
+          CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
