@@ -1,16 +1,37 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import parseChangelog from 'changelog-parser'
+import path from 'path'
+
+function parseBoolean(input: string | boolean, defaultValue: boolean): boolean {
+  if (['true', 'True', 'TRUE', true].includes(input)) return true
+  if (['false', 'False', 'FALSE', false].includes(input)) return false
+  return defaultValue
+}
+
+function getInput(): {filePath: string; removeMarkdown: boolean} {
+  const filePath: string = core.getInput('filePath')
+  const removeMarkdown: string = core.getInput('removeMarkdown')
+  core.debug(`input filePath: ${filePath}`)
+  core.debug(`input removeMarkdown: ${removeMarkdown}`)
+
+  return {
+    filePath: path.resolve(filePath || 'CHANGELOG.md'),
+    removeMarkdown: parseBoolean(removeMarkdown, true)
+  }
+}
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const {filePath, removeMarkdown} = getInput()
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    core.debug(`reading changelog file from ${filePath}`)
+    core.debug(`removeMarkdown is ${removeMarkdown}`)
 
-    core.setOutput('time', new Date().toTimeString())
+    const parsed = await parseChangelog({filePath, removeMarkdown})
+    const json = JSON.stringify(parsed)
+    core.debug(`parsed is ${json}`)
+
+    core.setOutput('parsed', json)
   } catch (error) {
     core.setFailed(error.message)
   }

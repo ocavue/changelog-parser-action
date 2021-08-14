@@ -3,9 +3,11 @@ lockfileVersion: 5.3
 specifiers:
   '@actions/core': ^1.4.0
   '@jest/globals': ^27.0.6
+  '@types/changelog-parser': ^2.7.1
   '@types/node': ^16.3.3
   '@typescript-eslint/parser': ^4.28.3
   '@vercel/ncc': ^0.29.0
+  changelog-parser: ^2.8.0
   eslint: ^7.31.0
   eslint-plugin-github: ^4.1.1
   eslint-plugin-jest: ^24.3.6
@@ -20,9 +22,11 @@ dependencies:
 
 devDependencies:
   '@jest/globals': 27.0.6
+  '@types/changelog-parser': 2.7.1
   '@types/node': 16.6.1
   '@typescript-eslint/parser': 4.28.5_eslint@7.32.0+typescript@4.3.5
   '@vercel/ncc': 0.29.1
+  changelog-parser: 2.8.0
   eslint: 7.32.0
   eslint-plugin-github: 4.2.0_eslint@7.32.0+typescript@4.3.5
   eslint-plugin-jest: 24.4.0_eslint@7.32.0+typescript@4.3.5
@@ -691,6 +695,10 @@ packages:
       '@babel/types': 7.14.8
     dev: true
 
+  /@types/changelog-parser/2.7.1:
+    resolution: {integrity: sha512-OFZB7OlG6nrkcnvJhcyV2Zm/PUGk40oHyfaEBRjlm+ghrKxbFQI+xao/IzYL0G72fpLCTGGs3USrhe38/FF6QQ==}
+    dev: true
+
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
@@ -1165,6 +1173,14 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
+
+  /changelog-parser/2.8.0:
+    resolution: {integrity: sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==}
+    hasBin: true
+    dependencies:
+      line-reader: 0.2.4
+      remove-markdown: 0.2.2
     dev: true
 
   /char-regex/1.0.2:
@@ -2803,6 +2819,10 @@ packages:
       type-check: 0.4.0
     dev: true
 
+  /line-reader/0.2.4:
+    resolution: {integrity: sha1-xDkrWH3qOFgMlnhXDm6OSfzlJiI=}
+    dev: true
+
   /load-json-file/4.0.0:
     resolution: {integrity: sha1-L19Fq5HjMhYjT9U62rZo607AmTs=}
     engines: {node: '>=4'}
@@ -3272,6 +3292,10 @@ packages:
   /regexpp/3.2.0:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /remove-markdown/0.2.2:
+    resolution: {integrity: sha1-ZrDO66n7d8qWNrsbAwfOIaMqEqY=}
     dev: true
 
   /require-directory/2.1.1:
