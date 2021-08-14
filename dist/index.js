@@ -41,6 +41,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(984));
 const changelog_parser_1 = __importDefault(__nccwpck_require__(995));
 const path_1 = __importDefault(__nccwpck_require__(622));
+function debug(message) {
+    console.log('DEBUG:', message);
+    // I don't know why but `ACTIONS_STEP_DEBUG` is not working as expected.
+    // https://docs.github.com/en/actions/managing-workflow-runs/enabling-debug-logging
+    core.debug(message);
+}
 function parseBoolean(input, defaultValue) {
     if (['true', 'True', 'TRUE', true].includes(input))
         return true;
@@ -51,8 +57,8 @@ function parseBoolean(input, defaultValue) {
 function getInput() {
     const filePath = core.getInput('filePath');
     const removeMarkdown = core.getInput('removeMarkdown');
-    core.debug(`input filePath: ${filePath}`);
-    core.debug(`input removeMarkdown: ${removeMarkdown}`);
+    debug(`input filePath: ${filePath}`);
+    debug(`input removeMarkdown: ${removeMarkdown}`);
     return {
         filePath: path_1.default.resolve(filePath || 'CHANGELOG.md'),
         removeMarkdown: parseBoolean(removeMarkdown, true)
@@ -62,11 +68,11 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { filePath, removeMarkdown } = getInput();
-            core.debug(`reading changelog file from ${filePath}`);
-            core.debug(`removeMarkdown is ${removeMarkdown}`);
+            debug(`reading changelog file from ${filePath}`);
+            debug(`removeMarkdown is ${removeMarkdown}`);
             const parsed = yield changelog_parser_1.default({ filePath, removeMarkdown });
             const json = JSON.stringify(parsed);
-            core.debug(`parsed is ${json}`);
+            debug(`parsed is ${json}`);
             core.setOutput('parsed', json);
         }
         catch (error) {
