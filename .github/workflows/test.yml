@@ -41,10 +41,13 @@ jobs:
           echo "The latest version is $CHANGELOG_VERSION"
           echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
+          echo "========================================"
+          echo "The latest version body is $CHANGELOG_LATEST_BODY"
         env:
           CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
+          CHANGELOG_LATEST_BODY: "${{ steps.changelog-parser.outputs.latestBody }}"
 
   test_remove_markdown_true:
     runs-on: ubuntu-latest
@@ -61,10 +64,13 @@ jobs:
           echo "The latest version is $CHANGELOG_VERSION"
           echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
+          echo "========================================"
+          echo "The latest version body is $CHANGELOG_LATEST_BODY"
         env:
           CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
+          CHANGELOG_LATEST_BODY: "${{ steps.changelog-parser.outputs.latestBody }}"
 
   test_remove_markdown_false:
     runs-on: ubuntu-latest
@@ -81,10 +87,13 @@ jobs:
           echo "The latest version is $CHANGELOG_VERSION"
           echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
+          echo "========================================"
+          echo "The latest version body is $CHANGELOG_LATEST_BODY"
         env:
           CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
+          CHANGELOG_LATEST_BODY: "${{ steps.changelog-parser.outputs.latestBody }}"
 
   test_file_path:
     runs-on: ubuntu-latest
@@ -101,7 +110,10 @@ jobs:
           echo "The latest version is $CHANGELOG_VERSION"
           echo "========================================"
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
+          echo "========================================"
+          echo "The latest version body is $CHANGELOG_LATEST_BODY"
         env:
           CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
           CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
+          CHANGELOG_LATEST_BODY: "${{ steps.changelog-parser.outputs.latestBody }}"
