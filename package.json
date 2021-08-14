@@ -1,6 +1,6 @@
 {
   "name": "changelog-parser-action",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "A GitHub Actions workflow to read and parse your CHANGELOG",
   "main": "lib/main.js",
