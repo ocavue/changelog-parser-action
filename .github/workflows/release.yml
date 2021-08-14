@@ -10,7 +10,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2
         id: release
         with:
-          release-type: node
+          release-type: simple
       - uses: actions/checkout@v2
       - name: tag major and minor versions
         if: ${{ steps.release.outputs.release_created }}
