@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/ocavue/changelog-parser-action/compare/v1.1.0...v1.2.0) (2021-08-14)
+
+
+### Features
+
+* add `latestVersion` ([a9c912f](https://www.github.com/ocavue/changelog-parser-action/commit/a9c912fdd62f0129cc044dde9e47a0a2f1a73625))
+
 ## [1.1.0](https://www.github.com/ocavue/changelog-parser-action/compare/v1.0.3...v1.1.0) (2021-08-14)
 
 
