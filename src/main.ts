@@ -39,6 +39,11 @@ function getLatestVersionBody(parsed: any, removeMarkdown: boolean): string {
   }
 }
 
+function getLatestVersion(parsed: any): string {
+  const version = parsed.versions[0]
+  return version.version
+}
+
 async function run(): Promise<void> {
   try {
     const {filePath, removeMarkdown} = getInput()
@@ -54,6 +59,10 @@ async function run(): Promise<void> {
     const latestBody = getLatestVersionBody(parsed, removeMarkdown)
     debug(`latestBody is ${latestBody}`)
     core.setOutput('latestBody', latestBody)
+
+    const latestVersion = getLatestVersion(parsed)
+    debug(`latestVersion is ${latestVersion}`)
+    core.setOutput('latestVersion', latestVersion)
   } catch (error) {
     core.setFailed(error.message)
   }

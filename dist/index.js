@@ -75,6 +75,10 @@ function getLatestVersionBody(parsed, removeMarkdown) {
         return version.body;
     }
 }
+function getLatestVersion(parsed) {
+    const version = parsed.versions[0];
+    return version.version;
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -88,6 +92,9 @@ function run() {
             const latestBody = getLatestVersionBody(parsed, removeMarkdown);
             debug(`latestBody is ${latestBody}`);
             core.setOutput('latestBody', latestBody);
+            const latestVersion = getLatestVersion(parsed);
+            debug(`latestVersion is ${latestVersion}`);
+            core.setOutput('latestVersion', latestVersion);
         }
         catch (error) {
             core.setFailed(error.message);
