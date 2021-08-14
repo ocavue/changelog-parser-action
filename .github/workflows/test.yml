@@ -15,6 +15,19 @@ jobs:
           pnpm run all
 
   # make sure the action works on a clean machine without building
+  test_jq:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: changelog-parser
+        uses: ./
+        with:
+          filePath: "./CHANGELOG.md"
+      - run: |
+          echo "$CHANGELOG" | jq -r '.versions[0].parsed._ | join("\n")'
+        env:
+          CHANGELOG: "${{ steps.changelog-parser.outputs.parsed }}"
+
   test_default:
     runs-on: ubuntu-latest
     steps:
