@@ -43,12 +43,12 @@ jobs:
 
 | name             | description                                                                                                                                               | default          | required |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------- |
-| `filePath`       | The CHANGELOG file path                                                                                                                                   | `"CHANGELOG.md"` | `false`  |
-| `removeMarkdown` | Whether to remove markdown markup from the changelog entries. Used by [changelog-parser](https://github.com/hypermodules/changelog-parser#removemarkdown) | `true`           | `false`  |
+| `filePath`       | The CHANGELOG file path                                                                                                                                   | `"CHANGELOG.md"` | False    |
+| `removeMarkdown` | Whether to remove markdown markup from the changelog entries. Used by [changelog-parser](https://github.com/hypermodules/changelog-parser#removemarkdown) | `true`           | False    |
 
 ## Output
 
 | name         | description                                                                                                                                                                                   |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `parsed`        | A JSON string representing the parsed changelog object. Check [changelog-parser](https://github.com/hypermodules/changelog-parser#standards) for more information about the object structure. |
+| `parsed`     | A JSON string representing the parsed changelog object. Check [changelog-parser](https://github.com/hypermodules/changelog-parser#standards) for more information about the object structure. |
 | `latestBody` | A string that contains the changelog from the latest version                                                                                                                                  |
