@@ -26,7 +26,7 @@ jobs:
           echo "The changelog body in the latest version is $CHANGELOG_BODY"
         env:
           CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
-          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
+          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
   test_remove_markdown_true:
     runs-on: ubuntu-latest
@@ -36,6 +36,12 @@ jobs:
         uses: ./
         with:
           removeMarkdown: true
+      - run: |
+          echo "The latest version is $CHANGELOG_VERSION"
+          echo "The changelog body in the latest version is $CHANGELOG_BODY"
+        env:
+          CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
+          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
   test_remove_markdown_false:
     runs-on: ubuntu-latest
@@ -45,6 +51,12 @@ jobs:
         uses: ./
         with:
           removeMarkdown: false
+      - run: |
+          echo "The latest version is $CHANGELOG_VERSION"
+          echo "The changelog body in the latest version is $CHANGELOG_BODY"
+        env:
+          CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
+          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
 
   test_file_path:
     runs-on: ubuntu-latest
@@ -54,3 +66,9 @@ jobs:
         uses: ./
         with:
           filePath: "./CHANGELOG.md"
+      - run: |
+          echo "The latest version is $CHANGELOG_VERSION"
+          echo "The changelog body in the latest version is $CHANGELOG_BODY"
+        env:
+          CHANGELOG_VERSION: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].version }}"
+          CHANGELOG_BODY: "${{ fromJSON(steps.changelog-parser.outputs.parsed).versions[0].body }}"
