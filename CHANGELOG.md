@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/ocavue/changelog-parser-action/compare/v1.2.0...v1.2.1) (2021-08-16)
+
+
+### Bug Fixes
+
+* release new version ([a281325](https://www.github.com/ocavue/changelog-parser-action/commit/a28132547958799e9b3dd99688d7d1cdc9081e42))
+
 ## [1.2.0](https://www.github.com/ocavue/changelog-parser-action/compare/v1.1.0...v1.2.0) (2021-08-14)
 
 
